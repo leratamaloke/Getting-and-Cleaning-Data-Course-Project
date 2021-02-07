@@ -1,13 +1,13 @@
 # Getting-and-Cleaning-Data-Course-Project
 EXPLANATION OF THE SCRIPT AND HOW THE CODE WORKS
 
-*We applied all same read format to the files. We used sep="" cause given file format seperated like that. And also header=FALSE, just dont want to lose first row of data. If its true, first row would be column names which we dont want to.
+I applied all same read format to the files. We used sep="" cause given file format seperated like that. And also header=FALSE, just dont want to lose first row of data. If its true, first row would be column names which we dont want to.
 
 Reads these two file from UCI HAR Dataset and takes sensitive data. For activitiy labels first column includes rownumber which is unneccesary.
 
    ##Reading Features and ActivityLabels vector
    
-features <- read.csv("features.txt", sep = "", header = FALSE)[2]
+features <- read.csv("features.txt", sep = "", header = FALSE)[2]; 
 activities <- read.csv("activity_labels.txt", sep = "", header = FALSE)
    
 Again reads from same location and combine test and train set with rbind function.
