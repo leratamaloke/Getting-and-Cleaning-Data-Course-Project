@@ -1,14 +1,7 @@
 # Getting-and-Cleaning-Data-Course-Project
 EXPLANATION OF THE SCRIPT AND HOW THE CODE WORKS
 
-#Getting and Cleaning Data - Course Project
-
-##The course project consists of the following files.
-
-run_analysis.R
-CodeBook.md
-tidy.txt
-###run_analysis.R The R script performs the following data preprocessing steps.
+The R script performs the following data preprocessing steps.
 
 Check if the working directory contains the folder "data" and if, necessary, creates one
 Download the project dataset into the "data" directory
@@ -20,10 +13,9 @@ Subset allData to contain only measurement variables that include either "mean" 
 Use the activityLabels table to assign descriptive labels to the factor variable allData$activity
 Rename the measurement variables to be more explicit (Ex: Accelerometer vs. Acc)
 Use the merge function to reshape the dataset allData and then the dcast function to reformat and summarize the melted dataset
-Write the resulting tidy dataset to a text file
-###CodeBook.md The CodeBook document lists all variables and summaries calculated using the run_analysis.R script, along with units and any other relevant information.
+Write the resulting tidy dataset to a text file.
 
-###tidy.txt The tidy dataset contains the mean of each measurement listed in the CodeBook for each subject, for each activity performed during the experiment.
+The tidy dataset contains the mean of each measurement listed in the CodeBook for each subject, for each activity performed during the experiment.
 
 This dataset meets all of the requirements for a tidy dataset, specifically:
 
