@@ -24,6 +24,7 @@ Each different observation of that variable is in a different row
 All variables in the table are the same type of observation
 The tidy dataset can be read into R and viewed using the following code.
 
-tidy <- read.table("./data/tidy.txt", header=TRUE); View(tidy)
+tidy <- read.table("./data/tidy.txt", header=TRUE)
+Print(tidy)
 
-###Additional Information Background information on the experiment and the source of the data used in this project can be found here: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+Additional Information Background information on the experiment and the source of the data used in this project can be found here: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
