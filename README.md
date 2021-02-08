@@ -1,55 +1,37 @@
 # Getting-and-Cleaning-Data-Course-Project
 EXPLANATION OF THE SCRIPT AND HOW THE CODE WORKS
 
-I applied all same read format to the files. I used sep="" cause given file format seperated like that, also header=FALSE just because I did not want to lose the first row of the data. If its header=TRUE, first row would be column names which is not what i was looking for.
+#Getting and Cleaning Data - Course Project
 
-Reads these two file from UCI HAR Dataset and takes sensitive data. For activitiy labels first column includes rownumber which is unneccesary.
+##The course project consists of the following files.
 
-##Reading Features and ActivityLabels vector
-   
-features <- read.csv("features.txt", sep = "", header = FALSE)[2]; 
-activities <- read.csv("activity_labels.txt", sep = "", header = FALSE)
-   
-Again reads from same location and combine test and train set with rbind function.
+run_analysis.R
+CodeBook.md
+tidy.txt
+###run_analysis.R The R script performs the following data preprocessing steps.
 
-##Reading Sets
-   
-testSet <- read.csv("test/X_test.txt", sep = "", header = FALSE)
-trainSet <- read.csv("train/X_train.txt", sep = "", header = FALSE)
-mergedSet <- rbind(testSet,trainSet)    
-   
-Same exact things with previous step
+Check if the working directory contains the folder "data" and if, necessary, creates one
+Download the project dataset into the "data" directory
+Load the Training and Test datasets and the tables with the appropriate labels into R
+Complete assembly of Training and Test datasets with subject and activity identifiers
+Combine Training and Test datasets into one dataset named allData
+Use the features table to assign labels to the measurement variables in allData
+Subset allData to contain only measurement variables that include either "mean" or "std" in the name
+Use the activityLabels table to assign descriptive labels to the factor variable allData$activity
+Rename the measurement variables to be more explicit (Ex: Accelerometer vs. Acc)
+Use the merge function to reshape the dataset allData and then the dcast function to reformat and summarize the melted dataset
+Write the resulting tidy dataset to a text file
+###CodeBook.md The CodeBook document lists all variables and summaries calculated using the run_analysis.R script, along with units and any other relevant information.
 
-##Reading Movement
-   
-testMoves <- read.csv("test/Y_test.txt", sep = "", header = FALSE)
-trainMoves <- read.csv("train/Y_train.txt", sep = "", header = FALSE)
-mergedMoves <- rbind(testMoves, trainMoves)
-      
-##Reading PersonID
-   
-testPerson <- read.csv("test/subject_test.txt", sep = "", header = FALSE)
-trainPerson <- read.csv("train/subject_train.txt", sep = "", header = FALSE)
-mergedPerson <- rbind(testPerson, trainPerson)
-   
-Assigns real column attributes(decriptive column names) that is kept in features vector to mergedSet we have formed in previous steps. After that, select all columns that key values passing through this attributes
+###tidy.txt The tidy dataset contains the mean of each measurement listed in the CodeBook for each subject, for each activity performed during the experiment.
 
-##Extracting columns which includes measurements
-   
-names(mergedSet) <- features[ ,1]
-mergedSet <- mergedSet[ grepl("std|mean", names(mergedSet), ignore.case = TRUE) ] 
-   
-Descriptive values for activity columns.
+This dataset meets all of the requirements for a tidy dataset, specifically:
 
-##Descriptive ActivityName analysis
-   
-mergedMoves <- merge(mergedMoves, activities, by.x = "V1", by.y = "V1")[2]
-mergedSet <- cbind(mergedPerson, mergedMoves, mergedSet)
-names(mergedSet)[1:2] <- c("PersonID", "Activities")
-   
-Tidying set according to personID and activities
+Each variable is in a separate column
+Each different observation of that variable is in a different row
+All variables in the table are the same type of observation
+The tidy dataset can be read into R and viewed using the following code.
 
-##Tidying mergedSet
-   
-group_by(mergedSet, PersonID, Activities) %>%
-summarise_each(funs(mean))
+tidy <- read.table("./data/tidy.txt", header=TRUE); View(tidy)
+
+###Additional Information Background information on the experiment and the source of the data used in this project can be found here: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
