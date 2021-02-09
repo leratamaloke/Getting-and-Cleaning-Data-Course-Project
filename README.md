@@ -12,5 +12,5 @@ Use the activityLabels table to assign descriptive labels to the factor variable
 Rename the measurement variables to be more explicit (Ex: Accelerometer vs. Acc),
 Use the merge function to reshape the dataset allData and then the dcast function to reformat and summarize the melted dataset,
 Write the resulting tidy dataset to a text file.
-The tidy dataset contains the mean and standard deviation of each measurement listed in the CodeBook for each subject, for each activity performed during the experiment.
+The tidy dataset contains the mean of each measurement listed in the CodeBook for each subject, for each activity performed during the experiment.
 This dataset meets all the requirements of a tidy dataset.
