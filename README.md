@@ -18,7 +18,3 @@ Write the resulting tidy dataset to a text file.
 The tidy dataset contains the mean and standard deviation of each measurement listed in the CodeBook for each subject, for each activity performed during the experiment.
 
 This dataset meets all the requirements of a tidy dataset.
-
-The tidy dataset can be read into R using this code.
-tidy <- read.table("./data/tidy.txt", header=TRUE)
-Print(tidy)
